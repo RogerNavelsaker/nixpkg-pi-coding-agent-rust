@@ -12,6 +12,9 @@ let
           ".git"
           ".github"
           "artifacts"
+          "gh_og_share_image.png"
+          "optzst"
+          "pi_agent_rust_illustration.png"
           "result"
           "tests"
         ];
