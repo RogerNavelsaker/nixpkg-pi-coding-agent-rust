@@ -1,0 +1,19 @@
+{
+  "stubbed": false,
+  "source": {
+    "path": "upstream",
+    "version": "0.1.10",
+    "rev": "be52f4762ff0a42d99d540bdc651415729a0a5b4"
+  },
+  "package": {
+    "version": "0.1.10"
+  },
+  "binary": {
+    "name": "pi"
+  },
+  "meta": {
+    "description": "High-performance AI coding agent CLI in Rust",
+    "homepage": "https://github.com/Dicklesworthstone/pi_agent_rust",
+    "licenseSpdx": "MIT"
+  }
+}
