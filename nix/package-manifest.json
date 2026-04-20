@@ -1,9 +1,14 @@
 {
   "stubbed": false,
   "source": {
-    "path": "upstream",
+    "type": "github",
+    "owner": "Dicklesworthstone",
+    "repo": "pi_agent_rust",
+    "channel": "github-head",
+    "defaultBranch": "main",
     "version": "0.1.10",
-    "rev": "be52f4762ff0a42d99d540bdc651415729a0a5b4"
+    "rev": "be52f4762ff0a42d99d540bdc651415729a0a5b4",
+    "hash": "sha256-akKWtTWzaoStYGj+huCzSA43h2LUJx8QJ75x7l5XxwM="
   },
   "package": {
     "version": "0.1.10"

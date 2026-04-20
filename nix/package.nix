@@ -1,26 +1,25 @@
-{ bash, lib, makeWrapper, rustPlatform, sqlite }:
+{ bash, fetchFromGitHub, lib, makeWrapper, runCommand, rustPlatform, sqlite }:
 
 let
   manifest = builtins.fromJSON (builtins.readFile ./package-manifest.json);
-  sourceRoot = lib.cleanSourceWith {
-    src = ../upstream;
-    filter = path: type:
-      let
-        base = baseNameOf path;
-        excluded = [
-          ".beads"
-          ".git"
-          ".github"
-          "artifacts"
-          "gh_og_share_image.png"
-          "optzst"
-          "pi_agent_rust_illustration.png"
-          "result"
-          "tests"
-        ];
-      in
-      !(builtins.elem base excluded);
+  upstreamSrc = fetchFromGitHub {
+    owner = manifest.source.owner;
+    repo = manifest.source.repo;
+    rev = manifest.source.rev;
+    hash = manifest.source.hash;
   };
+  sourceRoot = runCommand "${manifest.binary.name}-${manifest.source.version}-src" { } ''
+    mkdir -p "$out"
+    cp ${upstreamSrc}/Cargo.toml "$out/Cargo.toml"
+    cp ${upstreamSrc}/Cargo.lock "$out/Cargo.lock"
+    if [ -f ${upstreamSrc}/build.rs ]; then
+      cp ${upstreamSrc}/build.rs "$out/build.rs"
+    fi
+    cp -R ${upstreamSrc}/src/. "$out/src/"
+    if [ -d ${upstreamSrc}/benches ]; then
+      cp -R ${upstreamSrc}/benches/. "$out/benches/"
+    fi
+  '';
   builtBinary = manifest.binary.upstreamName or manifest.binary.name;
   aliasOutputs = manifest.binary.aliases or [ ];
   aliasScripts = lib.concatMapStrings
@@ -38,11 +37,11 @@ EOF
 in
 rustPlatform.buildRustPackage {
   pname = manifest.binary.name;
-  version = manifest.package.version;
+  version = manifest.source.version;
   src = sourceRoot;
 
   cargoLock = {
-    lockFile = ../upstream/Cargo.lock;
+    lockFile = sourceRoot + "/Cargo.lock";
   };
 
   cargoBuildFlags =
