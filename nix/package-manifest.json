@@ -6,12 +6,12 @@
     "repo": "pi_agent_rust",
     "channel": "github-head",
     "defaultBranch": "main",
-    "version": "0.1.13",
-    "rev": "b6c36435b06a7e2510f57bfb5ea084ed24af8459",
-    "hash": "sha256-O9Izx3y/taBEmC04IBa+C0ZJSfqpNjPHLt8BwSJ49zY="
+    "version": "0.1.14",
+    "rev": "ef40055a861629d41c0bd031b6425d55b97b6d10",
+    "hash": "sha256-INcNee4ZausPJ4e9tNMIyJwcGKjZHHi5R7M1TNwBTLU="
   },
   "package": {
-    "version": "0.1.13"
+    "version": "0.1.14"
   },
   "binary": {
     "name": "pi"
