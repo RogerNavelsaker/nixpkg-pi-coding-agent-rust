@@ -58,6 +58,7 @@ rustPlatform.buildRustPackage {
 
   env = {
     RUSTC_BOOTSTRAP = "1";
+    RUSTFLAGS = "--cfg nightly";
     VERGEN_IDEMPOTENT = "1";
     VERGEN_GIT_SHA = manifest.source.rev;
     VERGEN_GIT_DIRTY = "false";
