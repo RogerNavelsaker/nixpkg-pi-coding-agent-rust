@@ -76,6 +76,9 @@ rustPlatform.buildRustPackage {
   '';
 
   env = {
+    # Keep release builds practical on CI runners while retaining optimization.
+    CARGO_PROFILE_RELEASE_LTO = "thin";
+    CARGO_PROFILE_RELEASE_CODEGEN_UNITS = "16";
     RUSTC_BOOTSTRAP = "1";
     VERGEN_IDEMPOTENT = "1";
     VERGEN_GIT_SHA = manifest.source.rev;
