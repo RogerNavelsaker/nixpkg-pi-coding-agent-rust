@@ -16,9 +16,14 @@ let
       cp ${upstreamSrc}/build.rs "$out/build.rs"
     fi
     cp -R ${upstreamSrc}/src/. "$out/src/"
+    cp ${upstreamSrc}/CHANGELOG.md "$out/CHANGELOG.md"
     mkdir -p "$out/legacy_pi_mono_code/pi-mono/packages/ai/src"
     cp ${upstreamSrc}/legacy_pi_mono_code/pi-mono/packages/ai/src/models.generated.ts \
       "$out/legacy_pi_mono_code/pi-mono/packages/ai/src/models.generated.ts"
+    mkdir -p "$out/docs/schema"
+    cp ${upstreamSrc}/docs/extension-artifact-provenance.json "$out/docs/extension-artifact-provenance.json"
+    cp ${upstreamSrc}/docs/provider-upstream-model-ids-snapshot.json "$out/docs/provider-upstream-model-ids-snapshot.json"
+    cp ${upstreamSrc}/docs/schema/extension_protocol.json "$out/docs/schema/extension_protocol.json"
     if [ -d ${upstreamSrc}/benches ]; then
       cp -R ${upstreamSrc}/benches/. "$out/benches/"
     fi
