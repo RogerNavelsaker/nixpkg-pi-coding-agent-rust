@@ -42,6 +42,9 @@ rustPlatform.buildRustPackage {
 
   cargoLock = {
     lockFile = sourceRoot + "/Cargo.lock";
+    outputHashes = {
+      "loom-0.7.2" = "sha256-PxYkVNEuSvW6bfBcC2MvIGdx/1G4vWRAqhg6CIEPxWE=";
+    };
   };
 
   cargoBuildFlags =
