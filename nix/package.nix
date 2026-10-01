@@ -16,6 +16,9 @@ let
       cp ${upstreamSrc}/build.rs "$out/build.rs"
     fi
     cp -R ${upstreamSrc}/src/. "$out/src/"
+    mkdir -p "$out/legacy_pi_mono_code/pi-mono/packages/ai/src"
+    cp ${upstreamSrc}/legacy_pi_mono_code/pi-mono/packages/ai/src/models.generated.ts \
+      "$out/legacy_pi_mono_code/pi-mono/packages/ai/src/models.generated.ts"
     if [ -d ${upstreamSrc}/benches ]; then
       cp -R ${upstreamSrc}/benches/. "$out/benches/"
     fi
