@@ -56,6 +56,14 @@ rustPlatform.buildRustPackage {
   buildInputs = [ sqlite ];
   doCheck = false;
 
+  # ftui-widgets 0.7.0 uses the still-unstable isolate_* integer methods.
+  # The upstream package enables RUSTC_BOOTSTRAP, but the dependency itself
+  # does not declare the corresponding feature gate.
+  preBuild = ''
+    substituteInPlace "$cargoDepsCopy/ftui-widgets-0.7.0/src/lib.rs" \
+      --prepend '#![feature(isolate_most_least_significant_one)]\n'
+  '';
+
   env = {
     RUSTC_BOOTSTRAP = "1";
     VERGEN_IDEMPOTENT = "1";
