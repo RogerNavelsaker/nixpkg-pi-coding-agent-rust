@@ -60,8 +60,11 @@ rustPlatform.buildRustPackage {
   # The upstream package enables RUSTC_BOOTSTRAP, but the dependency itself
   # does not declare the corresponding feature gate.
   preBuild = ''
-    substituteInPlace "$cargoDepsCopy/ftui-widgets-0.7.0/src/lib.rs" \
-      --prepend '#![feature(isolate_most_least_significant_one)]\n'
+    ftui_widgets_src="$cargoDepsCopy/ftui-widgets-0.7.0/src/lib.rs"
+    ftui_widgets_tmp=$(mktemp)
+    printf '%s\n' '#![feature(isolate_most_least_significant_one)]' > "$ftui_widgets_tmp"
+    cat "$ftui_widgets_src" >> "$ftui_widgets_tmp"
+    mv "$ftui_widgets_tmp" "$ftui_widgets_src"
   '';
 
   env = {
